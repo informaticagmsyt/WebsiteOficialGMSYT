@@ -1,0 +1,222 @@
+<?php
+$var=$_GET['del'];
+$enlace = pg_connect("host='localhost' dbname=sistema port=5432 user=postgres password=123456");
+$sql=" SELECT  proyecto.id_proyecto, 
+  proyecto.nombre_proyecto, 
+  proyecto.estatus_proyecto, 
+  proyecto.descripcion_proyecto, 
+  tareas.id_tarea, 
+  tareas.titulo_tarea, 
+  tareas.tipo_tarea, 
+  tareas.descripcion_tarea, 
+  tareas.fi_tarea, 
+  tareas.ff_tarea, 
+  tareas.id_proyecto_tarea, 
+  tareas,estatus_tarea,
+  empresa.tipo, 
+  empresa.rif_empresa, 
+  empresa.nombre_empresa, 
+  empresa.telefono_empresa, 
+  empresa.inst_responsable, 
+  tareas.id_tutor_tarea, 
+  responsable.nombre_responsable, 
+  responsable.cedula_responsable, 
+  responsable.telefono_responsable, 
+  responsable.email_responsable
+FROM  public.tareas, 
+  public.proyecto, 
+  public.empresa, 
+  public.responsable
+WHERE tareas.id_proyecto_tarea = proyecto.id_proyecto AND
+  tareas.id_tutor_tarea = responsable.id_responsable AND
+  proyecto.id_proyecto = empresa.id_proyecto_empresa AND tareas.id_tarea = '$var'";
+
+$query= pg_query($enlace,$sql);
+$fila = pg_fetch_array($query);
+
+$sql1="SELECT 
+  observaciones.fecha_ejecucion, 
+  observaciones.recomendaciones, 
+  observaciones.observaciones, 
+  observaciones.id_tareas_obs, 
+  tareas.id_tarea, 
+  observaciones.id_observaciones
+FROM 
+  public.observaciones, 
+  public.tareas
+WHERE 
+  tareas.id_tarea = observaciones.id_tareas_obs AND tareas.id_tarea = '$var'";
+$query1= pg_query($enlace,$sql1);
+
+?>
+<table>
+    <tr>
+        <td><img src="res/cin.jpg" width="740" > </td>
+    </tr>
+</table>
+ <br>
+<style type="text/css">
+	.linea{
+		border-style: solid;
+		border-width: 1px;
+
+		color: #DC3545;
+		/*color: #007BFF;*/ 	
+	}
+</style> 
+
+<table>
+    <tr>
+        <td><b>Estatus General:</b></td>
+        <td></td>
+    </tr>
+</table>
+<br>
+<table> 
+<tr>
+    <td width="735"; style="  background-color: #8E1900;"> <b style="color: white;" >DATOS DEL PROYECTO</b></td>
+</tr>
+</table>
+<table style="bordercolor="black"">
+        <tr>
+            <td ><b>Nombre del Proyecto:</b></td>
+            <td><?php echo $fila["nombre_proyecto"]?></td> 
+        </tr>
+        <tr>
+            <td ><b>Descripcion del Proyecto:</b></td>
+            <td width="568" align="justify" >  <?php echo $fila["descripcion_proyecto"]?> </td>  
+        </tr>
+        <tr>
+            <td><b>Situacion Actual:</b></td>
+            <td ><?php echo $fila["estatus_proyecto"]?></td>
+        </tr>       
+</table>
+<br>
+<table> 
+<tr>
+    <td width="735" style="  background-color: #8E1900;"> <b style="color: white;" >DATOS DE LA UNIDAD DE PRODUCCION</b></td>
+</tr>
+</table>
+
+<!--********************************************************************************************************-->
+
+<table style="bordercolor="black"">
+			<tr>
+            <td ><b>Rif:</b></td>
+            <td><?php echo $fila["rif_empresa"]?></td> 
+        </tr>
+        <tr>
+            <td ><b>Nombre:</b></td>
+            
+      
+        <tr><td><?php echo $fila["nombre_empresa"]?></td> </tr>
+       
+            <td ><b>Telefono:</b></td>
+            <td ><?php echo $fila["telefono_empresa"]?></td>  
+        </tr>    
+</table>
+<br>
+<table> 
+<tr>
+    <td width="735" style="  background-color: #8E1900;" > <b style="color: white;" >DATOS DE LA TAREA</b></td>
+</tr>
+</table>
+
+<!--********************************************************************************************************-->
+
+<table style="bordercolor="black"">
+			<tr>
+            <td ><b>Titulo:</b></td>
+            <td><?php echo $fila["titulo_tarea"]?></td> 
+        </tr>
+        <tr>
+            <td ><b>Descripcion:</b></td>
+            <td width="610" ><?php echo $fila["descripcion_tarea"]?></td> 
+        </tr>
+        <tr>
+            <td ><b>Tipo de Tarea:</b></td>
+            <td ><?php echo $fila["tipo_tarea"]?></td>  
+        </tr>
+        <tr>
+            <td ><b>Fecha de Inicio:</b></td>
+            <td><?php echo $fila["fi_tarea"]?></td> 
+        </tr>
+        <tr>
+            <td ><b>Fecha de Culminacion:</b></td>
+            <td ><?php echo $fila["ff_tarea"]?></td>  
+        </tr>
+			<tr>
+            <td ><b>Estatus de la Tarea:</b></td>
+            <td ><?php echo $fila["estatus_tarea"]?></td>  
+        </tr>        
+</table>
+<br>
+<table> 
+<tr>
+    <td width="735" style="  background-color: #8E1900;" > <b style="color: white;" >DATOS DEL TUTOR</b></td>
+</tr>
+</table>
+<!--********************************************************************************************************-->
+<table style="bordercolor="black"">
+			<tr>
+            <td ><b>Nombre:</b></td>
+            <td><?php echo $fila["nombre_responsable"]?></td> 
+        </tr>
+        <tr>
+            <td ><b>Telefono:</b></td>
+            <td><?php echo $fila["telefono_responsable"]?></td> 
+        </tr>
+        <tr>
+            <td ><b>Email:</b></td>
+            <td ><?php echo $fila["email_responsable"]?></td>  
+        </tr>
+          
+</table>
+<br>
+<table> 
+<tr>
+    <td width="735" style="  background-color: #8E1900;" > <b style="color: white;" >SEGUIMIENTO Y CONTROL</b></td>
+</tr>
+</table>
+<!--********************************************************************************************************-->
+<table style="bordercolor="black"">
+			<tr>
+            <td width="160" ><b>Fecha de la Visita</b></td>
+            <td width="280" ><b>Observaciones:</b></td>
+				<td width="350" ><b>Recomendaciones:</b></td>
+        </tr>
+</table>
+
+<style type="text/css">
+	.line{
+		width:90%;
+		border-style: inset;
+	}
+</style>
+   
+<?php
+while($fila1 = pg_fetch_array($query1)) {
+?>
+<table >
+	<tr>
+		<td width="150"><?php echo $fila1["fecha_ejecucion"]?></td>
+		<td width="280"><?php echo $fila1["observaciones"]?> </td>
+		<td width="280"><?php echo $fila1["recomendaciones"]?> </td> 	
+	</tr>
+
+</table>
+<table summary="" >
+	<tr>
+	<td width="735" ><hr></td>	
+	</tr>
+</table>
+
+<?php
+}
+?>        
+          
+
+
+
+
+
