@@ -1,74 +1,106 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
-
-<body>
-<br>
-
-<section>
-    <div  class="container-fluid">
-    <p><h4 style="bg-success" class="text-primary"> Listado de Registados del Sistema en el Proyecto Emprende </h4></p>
+?>
+ <body class="theme-red">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Por Favor Espere...</p>
+        </div>
     </div>
+    <div class="overlay"></div>
+    <section class="content">
+        <div class="container-fluid">
+          <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                Listado de Peronas Registradas en el Programa Joven Emprendedor
+                            </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a href="javascript:void(0);">Action</a></li>
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else here</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                   <thead>
+                                        <tr>
+                                            <th scope="col" style="font-family: 'Dancing Script', cursive;">Cedula</th>
+                                <th scope="col" style="font-family: 'Dancing Script', cursive;">Nombres</th>
+                                <th scope="col" style="font-family: 'Dancing Script', cursive;">Apellidos</th>
+                                <th scope="col" style="font-family: 'Dancing Script', cursive;">Sexo</th>
+                                <th scope="col" style="font-family: 'Dancing Script', cursive;">Fecha de Nacimiento</th>
+                                <th scope="col" style="font-family: 'Dancing Script', cursive;">Telefono</th>
+                                <th scope="col" style="font-family: 'Dancing Script', cursive;">Email</th>
+                                <th scope="col" style="font-family: 'Dancing Script', cursive;">Estado</th>
+                                <th scope="col" style="font-family: 'Dancing Script', cursive;">Municipio</th>
+                                <th scope="col" style="font-family: 'Dancing Script', cursive;">Parroquia</th>
+                                <th scope="col" style="font-family: 'Dancing Script', cursive;">Localidad</th>
+                                <th scope="col" style="font-family: 'Dancing Script', cursive;">Direccion</th>
+                                <th scope="col" style="font-family: 'Dancing Script', cursive;">Espacio Social</th>
+                                <th scope="col" style="font-family: 'Dancing Script', cursive;">Movimiento</th>
+                                <th scope="col" style="font-family: 'Dancing Script', cursive;">Grado Instruccion</th>
+                                <th scope="col" style="font-family: 'Dancing Script', cursive;">Oficio</th>
+                                <th scope="col" style="font-family: 'Dancing Script', cursive;">Trabaja</th>
+                                <th scope="col" style="font-family: 'Dancing Script', cursive;">Pertenece</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                                                <?php
+                                    foreach ($listar as $listar) {
+                                ?>
+                                  <tr>
+                                        <th scope="row"><?php echo $listar->cedula;?></th>
+                                        <td><?php echo strtolower($listar->nombre);?></td>
+                                        <td><?php echo strtolower($listar->apellido);?></td>
+                                        <td><?php echo strtolower($listar->sexo);?></td>
+                                        <td><?php echo strtolower($listar->f_nacimiento);?></td>
+                                        <td><?php echo strtolower($listar->telefono);?></td>
+                                        <td><?php echo strtolower($listar->email);?></td>
+                                        <td><?php echo strtolower($listar->estado);?></td>
+                                        <td><?php echo strtolower($listar->municipio);?></td>
+                                        <td><?php echo strtolower($listar->parroquia);?></td>
+                                        <td><?php echo strtolower($listar->nombre_localidad);?></td>
+                                        <td><?php echo strtolower($listar->direccion_exacta);?></td>
+                                        <td><?php echo strtolower($listar->e_social);?></td>
+                                        <td><?php echo strtolower($listar->movimiento);?></td>
+                                        <td><?php echo strtolower($listar->grado_instruccion);?></td>
+                                        <td><?php echo strtolower($listar->profesion_oficio);?></td>
+                                        <td><?php echo strtolower($listar->trabaja);?></td>
+                                        <td><?php echo strtolower($listar->planes);?></td>
+                                    
+                                <?php
+                                }
+                                ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
     </section>
-    <hr style="   border-width: 3px; dorder:solid;" class="bg-danger">
-<div class="container-fluid">
-	<div class=" col-md-12">
-			  <table id="tabla"  class=" table table-striped table-sm" style="width:100%">
-                <thead>
-                    <tr>
-                        <th scope="col">Cedula</th>
-                        <th scope="col">Nombres</th>
-                        <th scope="col">Apellidos</th>
-                        <th scope="col">Sexo</th>
-                        <th scope="col">Edad</th>
-                        <th scope="col">Fecha de Nacimiento</th>
-                        <th scope="col">Telefonos</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col">Municipio</th>
-                        <th scope="col">Parroquia</th>
-                        <th scope="col">Sector de Ubicacion</th>
-                        <th scope="col">Localidad</th>
-                        <th scope="col">Espacio Social</th>
-                        <th scope="col">Tipo de Emprendimiento</th>
-                        <th scope="col">Tipo de Proyecto</th>
-                        <th scope="col">Descripcion Proyecto</th>
-                        <th scope="col">Movimiento Social</th>
-                        <th scope="col">Email</th> 
-                        <th scope="col">pertenece</th>
-                        <th scope="col">Fecha de Registro</th>
-   
-    
-                    </tr>
-                </thead>
-                <tbody>
-        <?php
-	 	foreach ($listar as $listar) {
-	 ?>
-	  <tr>
-            <th scope="row"><?php echo $listar->cedula;?></th>
-            <td><?php echo strtolower($listar->nombre);?></td>
-            <td><?php echo strtolower($listar->apellido);?></td>
-            <td><?php echo strtolower($listar->sexo);?></td>
-            <td><?php  $cumpleanos = new DateTime("$listar->f_nacimiento");$hoy = new DateTime();$annos = $hoy->diff($cumpleanos);echo $annos->y;?></td>
-            <td><?php echo strtolower($listar->f_nacimiento);?></td>
-            <td><?php echo strtolower($listar->telefono);?></td>
-            <td><?php echo strtolower($listar->estado);?></td> 
-            <td><?php echo  strtolower(  $listar->municipio);?></td>
-            <td><?php echo strtolower($listar->parroquia);?></td>
-            <td><?php echo strtolower ($listar->s_ubicacion);?></td>
-            <td><?php echo strtolower ($listar->localidad);echo " ";echo strtolower($listar->n_localidad);?></td>
-            <td><?php echo strtolower ($listar->e_social);echo " ";echo strtolower($listar->n_social);?></td>
-            <td><?php echo strtolower($listar->t_emprendimiento);?></td>
-            <td><?php echo strtolower($listar->t_asesoramiento);?></td>
-            <td><?php echo strtolower($listar->solicitud);?></td>
-            <td><?php echo strtolower($listar->movimiento);?></td>
-            <td><?php echo strtolower($listar->email);?></td>  
-            <td><?php echo strtolower($listar->pertenece);?></td>
-            <td><?php echo strtolower($listar->fecha);?></td> 
-	<?php
-	}
-	?>       
-        </tbody>
-
-
-</body>

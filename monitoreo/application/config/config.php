@@ -23,9 +23,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://portal.gmsaberytrabajo.gob.ve/monitoreo/';
- //$config['base_url'] = 'http://localhost/monitoreo/';
-
+//$config['base_url'] = 'http://portal.gmsaberytrabajo.gob.ve/monitoreo/';
+$config['base_url'] = 'http://sistema.gmsaberytrabajo.gob.ve/monitoreo/';
+//$config['base_url'] = 'http://localhost/monitoreo/';
 /*
 |--------------------------------------------------------------------------
 | Index File

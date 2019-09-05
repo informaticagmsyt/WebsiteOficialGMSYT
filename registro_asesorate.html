@@ -161,17 +161,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row row-sm-offset">
+                    <div class="row row-sm-offset"> 
                         <div class="col-md-6 multi-horizontal" >
                             <div class="form-group">
                                 <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-t">Email</label>
                                 <input type="text" class="form-control" name="email" required>
                             </div>
                         </div>
-                        <div class="col-md-6 multi-horizontal" >
+                         <div class="col-md-6 multi-horizontal" >
                             <div class="form-group">
-                                  <label class="form-control-label mbr-fonts-style display-7" >¿Tipo de Emprendimiento?</label>
-                                <select  class="form-control" name="t_emprendimiento" required="">
+                                  <label class="form-control-label mbr-fonts-style display-7" >¿Razon Social</label>
+                                <select  class="form-control" name="r_social" required="">
                                     <option value="0">Seleccione</option>
                                     <option value="PERSONAL">Personal</option>
                                     <option value="EPS">Empresa de Produccion Social</option>
@@ -181,8 +181,8 @@
                                 </select>
                             </div>
                         </div>
-                        
                     </div>
+ <hr>
                     <div class="row row-sm-offset">
                         <div class="col-md-4 multi-horizontal" >
                             <div class="form-group">
@@ -234,15 +234,7 @@
                             </div>
                         </div>
                     </div>
-                     <div class="row row-sm-offset">
-                        <div class="col-md-12 multi-horizontal" >
-                            <div class="form-group">
-                                <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-t">Sector de Ubicacion</label>
-                                <input type="text" class="form-control" name="s_ubicacion" required>
-                            </div>
-                        </div>
-
-                    </div>
+                  
                     <div class="row row-sm-offset">
                        <div class="col-md-4 multi-horizontal" >
                             <div class="form-group">
@@ -265,31 +257,70 @@
                         </div>
                
                     </div>
-                      <div class="row row-sm-offset">
-                       <div class="col-md-4 multi-horizontal" >
+
+                    <div class="row row-sm-offset">
+                        <div class="col-md-12 multi-horizontal" >
                             <div class="form-group">
-                                  <label class="form-control-label mbr-fonts-style display-7" >Espacio Social</label>
+                                <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-t">Direccion Exacta</label>
+                                <input type="text" class="form-control" name="direccion" required>
+                            </div>
+                        </div>
+                    </div>
+                  <hr>
+                    <div class="row row-sm-offset">
+                       <div class="col-md-6 multi-horizontal" >
+                            <div class="form-group">
+                                  <label class="form-control-label mbr-fonts-style display-7" >¿Trabaja actualmente?</label>
+                                <select  class="form-control" name="trabaja" required="">
+                                    <option value="SI">Si</option>
+                                    <option value="NO">No</option> 
+                                </select>
+                            </div>
+                        </div>
+                     <div class="col-md-6 multi-horizontal" >
+                            <div class="form-group">
+                                  <label class="form-control-label mbr-fonts-style display-7" >Grado de instrucción</label>
+                                <select  class="form-control" name="g_instruccion" required="">
+                                    <option value="PRIMARIA">Primaria</option>
+                                    <option value="BASICA">Basica</option>
+                                    <option value="BACHILLER">Bachiller</option>
+                                    <option value="TECNICA">Tecnica</option>
+                                    <option value="UNIVERSITARIA">Universitaria</option>
+                                </select>
+                            </div>
+                    </div>
+                    </div>
+                      <div class="row row-sm-offset">
+                        
+                        <div class="col-md-12 multi-horizontal" >
+                            <div class="form-group">
+                                <label class="form-control-label mbr-fonts-style display-7" >¿Profesión u Oficio?</label>
+                                <input type="text" class="form-control" name="profesion" required="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-sm-offset">
+                        
+                    <hr>
+                   
+                      
+                       <div class="col-md-6 multi-horizontal" >
+                            <div class="form-group">
+                                  <label class="form-control-label mbr-fonts-style display-7" >Espacio de la revolución en su punto y círculo</label>
                                 <select  class="form-control" name="e_social" required="">
                                     <option value="0">Seleccione</option>
                                     <option value="BASE DE MISIONES">Base de Misiones</option>
                                     <option value="CDI">Centro de Diagnostico Integral</option>
-                                    <option value="CRI">Centro de Rehabilitacion Integral</option>
-                                    <option value="CHANCA">Cancha</option>
-                                    <option value="CASA DE LA CULTURA">Casa de la Cultura</option>
-                                    <option value="CASA PARROQUIAL">Casa Parroquial</option>
+                                    <option value="CASAS DE ALIMENTACION">Casas de Alimentacion</option>
+                                    <option value="MATERNAL">Maternal</option>
                                     <option value="ESCUELA">Escuela</option>
                                     <option value="LICEO">Liceo</option>
                                     <option value="UNIVERSIDAD">Universidad</option>
                                     <option value="ALDEA UNIVERSITARIA">Aldea Universitaria</option> 
-                                    <option value="CENTRO COMERCIAL">Centro Comercial</option>
-                                    <option value="LOCAL COMERCIAL">Local Comercial</option>
-                                    <option value="CASA">Casa</option>
-                                    <option value="EDIFICIO">Edificio</option>
-                                    <option value="OTROS">Otros</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-8 multi-horizontal" >
+                        <div class="col-md-6 multi-horizontal" >
                             <div class="form-group">
                                 <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-t">Nombre del Espacio Social</label>
                                 <input type="text" class="form-control" name="n_social" required>
@@ -297,17 +328,19 @@
                         </div>
                
                     </div>
-                    
                     <div class="row row-sm-offset">
-                        <div class="col-md-6 multi-horizontal" >
+                        <div class="col-md-12 multi-horizontal" >
                             <div class="form-group">
-                                <label class="form-control-label mbr-fonts-style display-7" >¿A qué movimiento Social Representa?</label>
-                                <input type="text" class="form-control" name="movimiento"   >
+                                <label class="form-control-label mbr-fonts-style display-7" >Movimiento social o partido político pertenece</label>
+                                <input type="text" class="form-control" name="movimiento">
                             </div>
                         </div>
-                           <div class="col-md-6 multi-horizontal" >
+                    </div>
+                   <hr>
+                    <div class="row row-sm-offset">
+                         <div class="col-md-6 multi-horizontal" >
                             <div class="form-group">
-                                <label class="form-control-label mbr-fonts-style display-7" >¿ Tipo de Asesoramiento que desea?</label>
+                                <label class="form-control-label mbr-fonts-style display-7" >¿Tipo de Asesoramiento que desea?</label>
                                 <select  class="form-control" name="t_asesoramiento" required="">
                                      <option value="0">Seleccione</option>
                                     <option value="TECNICO">Tecnico</option>
@@ -317,7 +350,15 @@
                                 </select>
                             </div>
                         </div>
+                         <div class="col-md-12 multi-horizontal" >
+                            <div class="form-group">
+                                <label class="form-control-label mbr-fonts-style display-7" >¿Especifique su solicitud?</label>
+                                <input type="text" class="form-control" name="solicitud" required=""   >
+                            </div>
+                        </div>  
                     </div>
+                    <hr>
+                      
                  <div class="row row-sm-offset">
                        <div class="col-md-6 multi-horizontal" >
                             <div class="form-group">
@@ -331,7 +372,7 @@
                         </div>
                      <div class="col-md-6 multi-horizontal" >
                             <div class="form-group">
-                                  <label class="form-control-label mbr-fonts-style display-7" >Nivel de Produccion  </label>
+                                  <label class="form-control-label mbr-fonts-style display-7" >Nivel de Produccion </label>
                                 <select  class="form-control" name="n_produccion" required="">
                                     <option value="100%">Totalmente Productivo</option>
                                     <option value="50%">Medianamente Productivo</option>
@@ -341,27 +382,14 @@
                             </div>
                         </div>
                     </div>
-                  <div class="row row-sm-offset">
-                        
-                        <div class="col-md-12 multi-horizontal" >
-                            <div class="form-group">
-                                <label class="form-control-label mbr-fonts-style display-7" >¿Especifique su solicitud?</label>
-                                <input type="text" class="form-control" name="solicitud" required=""   >
-                            </div>
-                        </div>
-                        
-                        
-                    </div>
                     <div class="row row-sm-offset">
                         <div class="container">
                             <div class="row"> 
                                 <div class="offset-4">
-                                     <button type="submit" class="btn btn-primary btn-form display-4    ">Registrar</button>
+                                     <button type="submit" class="btn btn-primary btn-form display-4">Registrar</button>
                                 </div>
-                               
-                            </div>
-                               
-                            </div>
+                            </div>   
+                        </div>
                     </div>
                     
                 </form>

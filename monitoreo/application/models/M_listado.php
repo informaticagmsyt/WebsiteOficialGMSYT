@@ -3,160 +3,316 @@ class m_listado extends CI_Model
 {
     function _construct(){
         parent::__construct();  
-    }   
-public function listar_proyecto(){
-   
-    $this->db->select("proyecto.id_proyecto, 
-	proyecto.nombre_proyecto, 
-	proyecto.estatus_proyecto, 
-	proyecto.descripcion_proyecto, 
-	proyecto.tipo_proyecto, 
-	proyecto.categoria_proyecto, 
-	empresa.id_empresa, 
-	empresa.tipo, 
-	empresa.rif_empresa, 
-	empresa.nombre_empresa, 
-	empresa.telefono_empresa, 
-	empresa.direccion_empresa, 
-	empresa.estado, 
-	empresa.municipio, 
-	empresa.parroquia, 
-	empresa.ciudad, 
-	empresa.registrada, 
-	empresa.codigo_situr, 
-	empresa.codigo_sunagro, 
-	empresa.inst_responsable, 
-	empresa.id_proyecto_empresa, 
-	empresa.f_creacion, 
-	estados.id_estado, 
-	estados.estado, 
-	municipios.id_municipio, 
-	municipios.id_estado, 
-	municipios.municipio, 
-	parroquias.id_parroquia, 
-	parroquias.id_municipio");
-    $this->db->from("
-		public.empresa, 
-  		public.proyecto, 
-  		public.estados, 
-  		public.municipios, 
-  		public.parroquias"
-	);
-    $this->db->where(" proyecto.id_proyecto = empresa.id_proyecto_empresa AND
-			estados.id_estado = empresa.estado AND
-			municipios.id_municipio = empresa.municipio AND
-			parroquias.id_parroquia = empresa.parroquia ");
-    $resultados = $this->db->get();
-    return $resultados->result();
-        
+    } 
+public function get_estados(){
+    $this->db->query("SELECT '*'");
+    $this->db->from('estados');
+    $stado = $this->db->get();
+      return $stado->result();
  }
-public function p_tutor(){
-    $this->db->select(' "proyecto-tutor".id_proyecto_tutor, 
-    "proyecto-tutor".id_proyect, 
-    "proyecto-tutor".id_tutorr, 
-    proyecto.nombre_proyecto, 
-    proyecto.estatus_proyecto, 
-    responsable.nacionalidad, 
-    responsable.cedula_responsable, 
-    responsable.nombre_responsable, 
-    responsable.telefono_responsable, 
-    responsable.email_responsable, 
-    proyecto.descripcion_proyecto, 
-    proyecto.id_proyecto');
-    $this->db->from('public."proyecto-tutor", public.proyecto, public.responsable');
-    $this->db->where('proyecto-tutor".id_proyect = proyecto.id_proyecto AND
-    "proyecto-tutor".id_tutorr = responsable.id_responsable');
-    $resultados = $this->db->get();
-    return $resultados->result();
+public function get_municipio_query($id_estado){
+       $this->db->query("SELECT '*'");
+        $this->db->from('municipios');
+        $this->db->where("id_estado='$id_estado'");
+        $stado = $this->db->get();
+        return $stado->result();
 }
-
-public function tareas(){
-    $this->db->select("proyecto.id_proyecto,proyecto.nombre_proyecto, 
-    proyecto.estatus_proyecto, 
-    responsable.nombre_responsable, 
-    tareas.titulo_tarea, 
-    tareas.tipo_tarea, 
-    tareas.descripcion_tarea, 
-    tareas.fi_tarea, 
-    tareas.ff_tarea,
-    tareas.id_tarea");
-    $this->db->from('public.tareas, 
-    public.responsable, 
-    public.proyecto');
-    $this->db->where("tareas.id_proyecto_tarea = proyecto.id_proyecto AND
-    tareas.id_tutor_tarea = responsable.id_responsable");
-    $resultados = $this->db->get();
-    return $resultados->result();
-} 
- public function contar_proyectos(){
-    $this->db->query("SELECT COUNT(*)");
-    $this->db->from('proyecto');
-    $this->db->where('estatus_proyecto','Paralizado');
-    $paralizado = $this->db->get();
-    return $paralizado->result();
-}
-public function proyectos_activos(){
-    $this->db->query("SELECT COUNT(*)");
-    $this->db->from('proyecto');
-    $this->db->where('estatus_proyecto','Activo');
-    $activo = $this->db->get();
-    return $activo->result();
-}
-public function proyectos_reacondicionamiento(){
-    $this->db->query("SELECT COUNT(*)");
-    $this->db->from('proyecto');
-    $this->db->where('estatus_proyecto','Reacondicionamiento');
-    $paralizado = $this->db->get();
-    return $paralizado->result();
-}
-public function proyectos_planificacion(){
-    $this->db->query("SELECT COUNT(*)");
-    $this->db->from('proyecto');
-    $this->db->where('estatus_proyecto','Planificacion');
-    $paralizado = $this->db->get();
-    return $paralizado->result();
-}
-public function listar_proyectos(){
-	return  $this->db->query("SELECT * FROM proyecto")->result();
-}
-
- public function listar_usuarios(){
-        return  $this->db->query("SELECT * FROM usuarios")->result();
+public function listado_estatus(){
+    $this->db->query("SELECT COUNT('*')");
+    $this->db->from('estatus');
+    $contar = $this->db->get();
+      return $contar->result();
  }
- public function listar_responsable(){
-  $this->db->select("responsable.id_responsable, 
-  responsable.nacionalidad, 
-  responsable.cedula_responsable, 
-  responsable.nombre_responsable, 
-  responsable.telefono_responsable, 
-  responsable.email_responsable, 
-  responsable.estado, 
-  responsable.municipio, 
-  responsable.parroquia, 
-  responsable.direccion_responsable, 
-  responsable.profesion, 
-  responsable.oficio, 
-  responsable.inst_pertenece, 
-  estados.estado, 
-  municipios.municipio, 
-  parroquias.parroquia");
-  $this->db->from('public.responsable, 
-  public.estados, 
-  public.municipios, 
-  public.parroquias');
-  $this->db->where("responsable.estado = estados.id_estado AND
-  responsable.municipio = municipios.id_municipio AND
-  responsable.parroquia = parroquias.id_parroquia");
-  $listado = $this->db->get();
-    return $listado->result();
-}  
-     public function get_municipio_query($id_estado){
-        $query  =  $this->db->get_where('municipios', array('id_estado' =>$id_estado));
-        return $query->result();
-    }
-    public function get_parroquia_query($id_municipio="4"){
-        $query  =  $this->db->get_where('parroquias', array('id_municipio' => $id_municipio));
-        return $query->result();
-    }
-}
+ public function listado_tipo_usuario(){
+  $this->db->query("SELECT ('*') ");
+  $this->db->from('tipo_usuario');
+  $contar = $this->db->get();
+    return $contar->result();
+ }  
+public function listado_total(){
+  $this->db->query("SELECT COUNT(*)");
+  $this->db->from('personas');
+  $contar = $this->db->get();
+    return $contar->result();
+ }
+ public function listado_agro(){
+  $this->db->query("SELECT  count('planes.planes')");
+  $this->db->from('public.personas, public.planes, public.planes_personas');
+  $this->db->where("personas.id_persona = planes_personas.key_id_personas AND
+  planes.id_planes = planes_personas.key_id_planes AND planes.id_planes = '1'");
+  $agro = $this->db->get();
+    return $agro->result();
+ }
+  public function listado_asesorate(){
+  $this->db->query("SELECT  count('planes.planes')");
+  $this->db->from('public.personas, public.planes, public.planes_personas');
+  $this->db->where("personas.id_persona = planes_personas.key_id_personas AND
+  planes.id_planes = planes_personas.key_id_planes AND planes.id_planes = '2'");
+  $agro = $this->db->get();
+    return $agro->result();
+ }
+  public function listado_brigadas(){
+  $this->db->query("SELECT  count('planes.planes')");
+  $this->db->from('public.personas, public.planes, public.planes_personas');
+  $this->db->where("personas.id_persona = planes_personas.key_id_personas AND
+  planes.id_planes = planes_personas.key_id_planes AND planes.id_planes = '3'");
+  $brigadas = $this->db->get();
+    return $brigadas->result();
+ }
+  public function listado_emprende(){
+  $this->db->query("SELECT  count('planes.planes')");
+  $this->db->from('public.personas, public.planes, public.planes_personas');
+  $this->db->where("personas.id_persona = planes_personas.key_id_personas AND
+  planes.id_planes = planes_personas.key_id_planes AND planes.id_planes = '4'");
+  $emprende = $this->db->get();
+    return $emprende->result();
+ }
+  public function listado_ingenio(){
+  $this->db->query("SELECT  count('planes.planes')");
+  $this->db->from('public.personas, public.planes, public.planes_personas');
+  $this->db->where("personas.id_persona = planes_personas.key_id_personas AND
+  planes.id_planes = planes_personas.key_id_planes AND planes.id_planes = '5'");
+  $ingenio = $this->db->get();
+    return $ingenio->result();
+ }
+public function listado_amazonas(){
+  $this->db->query("SELECT COUNT(*)");
+  $this->db->from('public.personas, 
+  public.direccion, 
+  public.estados');
+  $this->db->where("personas.id_persona = direccion.id_persona_direccion AND
+  direccion.estado = estados.id_estado AND estados.id_estado='1'");
+  $amazonas = $this->db->get();
+    return $amazonas->result();
+ }
+public function listado_anzoategui(){
+  $this->db->query("SELECT COUNT(*)");
+  $this->db->from('public.personas, 
+  public.direccion, 
+  public.estados');
+  $this->db->where("personas.id_persona = direccion.id_persona_direccion AND
+  direccion.estado = estados.id_estado AND estados.id_estado='2'");
+  $amazonas = $this->db->get();
+    return $amazonas->result();
+ }
+ public function listado_apure(){
+  $this->db->query("SELECT COUNT(*)");
+  $this->db->from('public.personas, 
+  public.direccion, 
+  public.estados');
+  $this->db->where("personas.id_persona = direccion.id_persona_direccion AND
+  direccion.estado = estados.id_estado AND estados.id_estado='3'");
+  $amazonas = $this->db->get();
+    return $amazonas->result();
+ }
+ public function listado_aragua(){
+  $this->db->query("SELECT COUNT(*)");
+  $this->db->from('public.personas, 
+  public.direccion, 
+  public.estados');
+  $this->db->where("personas.id_persona = direccion.id_persona_direccion AND
+  direccion.estado = estados.id_estado AND estados.id_estado='4'");
+  $aragua = $this->db->get();
+    return $aragua->result();
+ }
+ public function listado_barinas(){
+  $this->db->query("SELECT COUNT(*)");
+  $this->db->from('public.personas, 
+  public.direccion, 
+  public.estados');
+  $this->db->where("personas.id_persona = direccion.id_persona_direccion AND
+  direccion.estado = estados.id_estado AND estados.id_estado='5'");
+  $aragua = $this->db->get();
+    return $aragua->result();
+ }
+  public function listado_bolivar(){
+  $this->db->query("SELECT COUNT(*)");
+  $this->db->from('public.personas, 
+  public.direccion, 
+  public.estados');
+  $this->db->where("personas.id_persona = direccion.id_persona_direccion AND
+  direccion.estado = estados.id_estado AND estados.id_estado='6'");
+  $aragua = $this->db->get();
+    return $aragua->result();
+ }
+  public function listado_carabobo(){
+  $this->db->query("SELECT COUNT(*)");
+  $this->db->from('public.personas, 
+  public.direccion, 
+  public.estados');
+  $this->db->where("personas.id_persona = direccion.id_persona_direccion AND
+  direccion.estado = estados.id_estado AND estados.id_estado='7'");
+  $aragua = $this->db->get();
+    return $aragua->result();
+ }
+   public function listado_cojedes(){
+  $this->db->query("SELECT COUNT(*)");
+  $this->db->from('public.personas, 
+  public.direccion, 
+  public.estados');
+  $this->db->where("personas.id_persona = direccion.id_persona_direccion AND
+  direccion.estado = estados.id_estado AND estados.id_estado='8'");
+  $aragua = $this->db->get();
+    return $aragua->result();
+ }
+    public function listado_delta(){
+  $this->db->query("SELECT COUNT(*)");
+  $this->db->from('public.personas, 
+  public.direccion, 
+  public.estados');
+  $this->db->where("personas.id_persona = direccion.id_persona_direccion AND
+  direccion.estado = estados.id_estado AND estados.id_estado='9'");
+  $aragua = $this->db->get();
+    return $aragua->result();
+ }
+  public function listado_distrito(){
+  $this->db->query("SELECT COUNT(*)");
+  $this->db->from('public.personas, 
+  public.direccion, 
+  public.estados');
+  $this->db->where("personas.id_persona = direccion.id_persona_direccion AND
+  direccion.estado = estados.id_estado AND estados.id_estado='10'");
+  $aragua = $this->db->get();
+    return $aragua->result();
+ }
+  public function listado_falcon(){
+  $this->db->query("SELECT COUNT(*)");
+  $this->db->from('public.personas, 
+  public.direccion, 
+  public.estados');
+  $this->db->where("personas.id_persona = direccion.id_persona_direccion AND
+  direccion.estado = estados.id_estado AND estados.id_estado='11'");
+  $aragua = $this->db->get();
+    return $aragua->result();
+ }
+   public function listado_guarico(){
+  $this->db->query("SELECT COUNT(*)");
+  $this->db->from('public.personas, 
+  public.direccion, 
+  public.estados');
+  $this->db->where("personas.id_persona = direccion.id_persona_direccion AND
+  direccion.estado = estados.id_estado AND estados.id_estado='12'");
+  $aragua = $this->db->get();
+    return $aragua->result();
+ }
+ public function listado_lara(){
+  $this->db->query("SELECT COUNT(*)");
+  $this->db->from('public.personas, 
+  public.direccion, 
+  public.estados');
+  $this->db->where("personas.id_persona = direccion.id_persona_direccion AND
+  direccion.estado = estados.id_estado AND estados.id_estado='13'");
+  $aragua = $this->db->get();
+    return $aragua->result();
+ }
+ public function listado_merida(){
+  $this->db->query("SELECT COUNT(*)");
+  $this->db->from('public.personas, 
+  public.direccion, 
+  public.estados');
+  $this->db->where("personas.id_persona = direccion.id_persona_direccion AND
+  direccion.estado = estados.id_estado AND estados.id_estado='14'");
+  $aragua = $this->db->get();
+    return $aragua->result();
+ }
+  public function listado_miranda(){
+  $this->db->query("SELECT COUNT(*)");
+  $this->db->from('public.personas, 
+  public.direccion, 
+  public.estados');
+  $this->db->where("personas.id_persona = direccion.id_persona_direccion AND
+  direccion.estado = estados.id_estado AND estados.id_estado='15'");
+  $aragua = $this->db->get();
+    return $aragua->result();
+ }
+ public function listado_monagas(){
+  $this->db->query("SELECT COUNT(*)");
+  $this->db->from('public.personas, 
+  public.direccion, 
+  public.estados');
+  $this->db->where("personas.id_persona = direccion.id_persona_direccion AND
+  direccion.estado = estados.id_estado AND estados.id_estado='16'");
+  $aragua = $this->db->get();
+    return $aragua->result();
+ }
+  public function listado_esparta(){
+  $this->db->query("SELECT COUNT(*)");
+  $this->db->from('public.personas, 
+  public.direccion, 
+  public.estados');
+  $this->db->where("personas.id_persona = direccion.id_persona_direccion AND
+  direccion.estado = estados.id_estado AND estados.id_estado='17'");
+  $aragua = $this->db->get();
+    return $aragua->result();
+ }
+  public function listado_portuguesa(){
+  $this->db->query("SELECT COUNT(*)");
+  $this->db->from('public.personas, 
+  public.direccion, 
+  public.estados');
+  $this->db->where("personas.id_persona = direccion.id_persona_direccion AND
+  direccion.estado = estados.id_estado AND estados.id_estado='18'");
+  $aragua = $this->db->get();
+    return $aragua->result();
+ }
+  public function listado_sucre(){
+  $this->db->query("SELECT COUNT(*)");
+  $this->db->from('public.personas, 
+  public.direccion, 
+  public.estados');
+  $this->db->where("personas.id_persona = direccion.id_persona_direccion AND
+  direccion.estado = estados.id_estado AND estados.id_estado='19'");
+  $aragua = $this->db->get();
+    return $aragua->result();
+ }
+  public function listado_tachira(){
+  $this->db->query("SELECT COUNT(*)");
+  $this->db->from('public.personas, 
+  public.direccion, 
+  public.estados');
+  $this->db->where("personas.id_persona = direccion.id_persona_direccion AND
+  direccion.estado = estados.id_estado AND estados.id_estado='20'");
+  $aragua = $this->db->get();
+    return $aragua->result();
+ }
+ public function listado_trujillo(){
+  $this->db->query("SELECT COUNT(*)");
+  $this->db->from('public.personas, 
+  public.direccion, 
+  public.estados');
+  $this->db->where("personas.id_persona = direccion.id_persona_direccion AND
+  direccion.estado = estados.id_estado AND estados.id_estado='21'");
+  $aragua = $this->db->get();
+    return $aragua->result();
+ }
+ public function listado_vargas(){
+  $this->db->query("SELECT COUNT(*)");
+  $this->db->from('public.personas, 
+  public.direccion, 
+  public.estados');
+  $this->db->where("personas.id_persona = direccion.id_persona_direccion AND
+  direccion.estado = estados.id_estado AND estados.id_estado='22'");
+  $aragua = $this->db->get();
+    return $aragua->result();
+ }
+ public function listado_yaracuy(){
+  $this->db->query("SELECT COUNT(*)");
+  $this->db->from('public.personas, 
+  public.direccion, 
+  public.estados');
+  $this->db->where("personas.id_persona = direccion.id_persona_direccion AND
+  direccion.estado = estados.id_estado AND estados.id_estado='23'");
+  $aragua = $this->db->get();
+    return $aragua->result();
+ }
+ public function listado_zulia(){
+  $this->db->query("SELECT COUNT(*)");
+  $this->db->from('public.personas, 
+  public.direccion, 
+  public.estados');
+  $this->db->where("personas.id_persona = direccion.id_persona_direccion AND
+  direccion.estado = estados.id_estado AND estados.id_estado='24'");
+  $aragua = $this->db->get();
+    return $aragua->result();
+ }}
 ?>

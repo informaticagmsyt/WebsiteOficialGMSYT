@@ -1,44 +1,49 @@
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
-<script type="text/javascript" src="<?= base_url()?>public/js/bootstrap.js" crossorigin="anonymous"></script>
-<script type="text/javascript" src="<?= base_url()?>public/js/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
-<script type="text/javascript" src="<?= base_url()?>public/js/buttons.bootstrap4.js" crossorigin="anonymous"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
-<script type="text/javascript" src="Buttons-1.5.4/js/dataTables.buttons.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-        $('#tabla').DataTable({
-                responsive: true,
-                dom: 'Bfrtip',
-        buttons: [
-            'copy', 'excel',  'print'
-        ],
-        "language": {
-                  "lengthMenu": "Mostrar _MENU_ resultados por pagina",
-                  "zeroRecords": "No existen Registros",
-                  "info": "Mostando pagina _PAGE_ de _PAGES_",
-                  "infoEmpty": "No hay registros",
-                  "sSearch":         "Buscar:",
-
-            "oPaginate": {
-                    "sFirst":    "Primero",
-                    "sLast":     "Último",
-                    "sNext":     "Siguiente",
-                    "sPrevious": "Anterior"
-                    },
-
-        },
-        });
-        
-    });
-
-    </script>
+    <script src="<?= base_url()?>public/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap Core Js -->
+    <script src="<?= base_url()?>public/plugins/bootstrap/js/bootstrap.js"></script>
+    <!-- Waves Effect Plugin Js -->
+    <script src="<?= base_url()?>public/plugins/node-waves/waves.js"></script>
+    <!-- Validation Plugin Js -->
+    <script src="<?= base_url()?>public/plugins/jquery-validation/jquery.validate.js"></script>
+    <!-- Custom Js -->
+    
+    <script src="<?= base_url()?>public/js/pages/examples/sign-in.js"></script> 
+    <!-- Chart Plugins Js -->
+    <script src="<?= base_url()?>public/js/admin.js"></script>
+    <!-- Bootstrap Core Js -->
+    <script src="<?= base_url()?>public/plugins/bootstrap/js/bootstrap.js"></script>
+    <!-- Select Plugin Js -->
+    <script src="<?= base_url()?>public/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+    <!-- Slimscroll Plugin Js -->
+    <script src="<?= base_url()?>public/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <!-- Waves Effect Plugin Js -->
+    <script src="<?= base_url()?>public/plugins/node-waves/waves.js"></script>
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="<?= base_url()?>public/plugins/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="<?= base_url()?>public/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+    <script src="<?= base_url()?>public/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+    <script src="<?= base_url()?>public/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+    <script src="<?= base_url()?>public/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+    <script src="<?= base_url()?>public/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+    <script src="<?= base_url()?>public/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+    <script src="<?= base_url()?>public/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+    <script src="<?= base_url()?>public/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+    <!-- Custom Js -->
+    <script src="<?= base_url()?>public/js/pages/tables/jquery-datatable.js"></script>
+    <!-- Demo Js -->
+    <script src="<?= base_url()?>public/demo.js"></script>
+    <!-- Dropzone Plugin Js -->
+    <script src="<?= base_url()?>public/plugins/dropzone/dropzone.js"></script>
+    <!-- Input Mask Plugin Js -->
+    <script src="<?= base_url()?>public/plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
+    <!-- Multi Select Plugin Js -->
+    <script src="<?= base_url()?>public/plugins/multi-select/js/jquery.multi-select.js"></script>
+    <!-- Jquery Spinner Plugin Js -->
+    <script src="<?= base_url()?>public/plugins/jquery-spinner/js/jquery.spinner.js"></script>
+    <!-- Bootstrap Tags Input Plugin Js -->
+    <script src="<?= base_url()?>public/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+    <!-- noUISlider Plugin Js -->
+    <script src="<?= base_url()?>public/plugins/nouislider/nouislider.js"></script>
+  <!------------------------------------------------------------------------------------------------------>
 
 </html>

@@ -1,59 +1,150 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
-
-<body>
-<br>
-
-<section>
-    <div  class="container-fluid">
-    <p><h4 style="bg-success" class="text-primary"> Listado de Registados en las Jornadas de Formacion </h4></p>
+?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js"></script>
+ <body class="theme-red">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Por Favor Espere...</p>
+        </div>
     </div>
+<script type="text/javascript">
+    var uno = "<?php echo  $agro      = count($agro)?>";
+    var dos = "<?php echo  $asesorate = count($asesorate)?>";
+    var tres = "<?php echo  $brigadas = count($brigadas)?>";
+    var cuatro = "<?php echo  $emprende  = count($emprende)?>";
+    var cinco = "<?php echo  $ingenio    = count($ingenio)?>";
+    var f = "<?php echo  $genero_f   = count($genero_f)?>";
+    var m = "<?php echo  $genero_m   = count($genero_m)?>";
+</script>
+  <script >
+   
+     var nombres = ['Masculino', 'Plan Asesorate', 'Brigadas Tecnicas', 'Joven Emprendedor', 'Proyecto Ingenio'];
+     var valores = [uno,dos,tres,cuatro,cinco];
+     var generos = ['Mujeres', 'Hombres'];
+     var sexo = [f,m];
+  </script>
+  <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="card">
+                        <div class="body bg-white">
+                            
+                        <canvas id="myChart" width="200" height="200"></canvas>
+                            <script>
+                            var ctx = document.getElementById('myChart').getContext('2d');
+                            var myChart = new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: nombres ,
+                                    datasets: [{
+                                        label: ' Grafico N° 1 Personas Registradas',
+                                        data: valores,
+                                        backgroundColor: [
+                                            'rgba(255, 99, 132, 0.5)',
+                                            'rgba(54, 162, 235, 0.5)',
+                                            'rgba(255, 206, 86, 0.5)',
+                                            'rgba(75, 192, 192, 0.5)',
+                                            'rgba(153, 102, 255,0.5)',
+                                            'rgba(255, 159, 64, 0.5)'
+                                        ],
+                                        borderColor: [
+                                            'rgba(255, 99, 132, 1)',
+                                            'rgba(54, 162, 235, 1)',
+                                            'rgba(255, 206, 86, 1)',
+                                            'rgba(75, 192, 192, 1)',
+                                            'rgba(153, 102, 255, 1)',
+                                            'rgba(255, 159, 64, 1)'
+                                        ],
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                beginAtZero: true
+                                            }
+                                        }]
+                                    }
+                                }
+                            });
+                            </script>
+                        </div>
+                    </div>
+
+                </div>
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="card">
+                        <div class="body bg-white">
+                            
+                        <canvas id="myChart2" width="200" height="200"></canvas>
+                            <script>
+                            var ctx = document.getElementById('myChart2').getContext('2d');
+                            var myChart2 = new Chart(ctx, {
+                                type: 'pie',
+                                data: {
+                                    labels: generos ,
+                                    datasets: [{
+                                        label: ' Grafico N° 2 Genero',
+                                        data: sexo,
+                                        backgroundColor: [
+                                            'rgba(255, 99, 132, 0.5)',
+                                            'rgba(54, 162, 235, 0.5)',
+                                            'rgba(255, 206, 86, 0.5)',
+                                            'rgba(75, 192, 192, 0.5)',
+                                            'rgba(153, 102, 255,0.5)',
+                                            'rgba(255, 159, 64, 0.5)'
+                                        ],
+                                        borderColor: [
+                                            'rgba(255, 99, 132, 1)',
+                                            'rgba(54, 162, 235, 1)',
+                                            'rgba(255, 206, 86, 1)',
+                                            'rgba(75, 192, 192, 1)',
+                                            'rgba(153, 102, 255, 1)',
+                                            'rgba(255, 159, 64, 1)'
+                                        ],
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                beginAtZero: true
+                                            }
+                                        }]
+                                    }
+                                }
+                            });
+                            </script>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <!-- #END# No Header Card -->
+        </div>
     </section>
-    <hr style="   border-width: 3px; dorder:solid;" class="bg-danger">
-<div class="container-fluid">
-	<div class=" col-md-12">
-			  <table id="tabla"  class=" table table-striped table-sm" style="width:100%">
-                <thead>
-                    <tr>
-                        <th scope="col">Cedula</th>
-                        <th scope="col">Nombres</th>
-                        <th scope="col">Apellidos</th>
-                        <th scope="col">Telefonos</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col">Municipio</th>
-                        <th scope="col">Parroquia</th>
-                        <th scope="col">Movimiento Social</th>
-                        <th scope="col">Espacio a Utilizar</th>
-                        <th scope="col">Servicio Electrico</th>
-                        <th scope="col">Servicio de Agua</th>
-                        <th scope="col">Internet</th>
-                        <th scope="col">Email</th>        
-                    </tr>
-                </thead>
-                <tbody>
-        <?php
-	 	foreach ($listar as $listar) {
-	 ?>
-	  <tr>
-            <th scope="row"><?php echo $listar->cedula;?></th>
-            <td><?php echo $listar->nombre;?></td>
-            <td><?php echo $listar->apellido;?></td>
-            <td><?php echo $listar->telefono;?></td>
-            <td><?php echo $listar->estado;?></td>
-            <td><?php echo $listar->municipio;?></td>
-            <td><?php echo $listar->parroquia;?></td>
-            <td><?php echo $listar->movimiento;?></td>
-            <td><?php echo $listar->espacio;?></td>
-            <td><?php echo $listar->luz;?></td>
-            <td><?php echo $listar->agua;?></td>
-            <td><?php echo $listar->internet;?></td>
-            <td><?php echo $listar->email;?></td>   
-    </tr>
-	<?php
-	}
-	?>       
-        </tbody>
+    <section class="content">
+        <div class="container-fluid">
+          <div class="row clearfix">
+                <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12">
 
-
-</body>
+        </div>
+            </div>
+            </div>
+        </div>
+    </section>

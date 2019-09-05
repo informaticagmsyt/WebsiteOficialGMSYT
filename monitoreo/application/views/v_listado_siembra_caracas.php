@@ -33,9 +33,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </tr>
                 </thead>
                 <tbody>
-        <?php
-	 	foreach ($listar as $listar) {
-	 ?>
 	  <tr>
             <th scope="row"><?php echo $listar->cedula;?></th>
             <td><?php echo $listar->nombre;?></td>
@@ -52,9 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <td><?php echo $listar->tipo_proyecto;?></td>
             <td><?php echo $listar->email;?></td>   
     </tr>
-	<?php
-	}
-	?>       
+    
         </tbody>
 
 

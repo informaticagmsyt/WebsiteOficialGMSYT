@@ -5,7 +5,8 @@ class m_estados extends CI_Model
         parent::__construct();  
     }   
  public function estados(){
-        return  $this->db->query("SELECT id_estado,estado FROM estados")->result();
+        return  $this->db->query("SELECT * FROM estados")->result();
+ 
     } 
    
 }

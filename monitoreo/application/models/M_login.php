@@ -5,24 +5,24 @@ class m_login extends CI_Model
         parent::__construct(); 
         $this->load->library('encryption');
     }
-
-    public function ingresar($usu,$pass){
-        
-        // $this->db->select("id_usuario,usuario,password");
-       // $this->db->from('usuarios');
-        $this->db->where("usuario ='$usu'");
-        $this->db->where("password ='$pass'");
-        $resp = $this->db->get('usuarios');
-        // $q =$resp->num_rows();
-        if ($resp->num_rows() >0) {
-            return $resp->num_rows();
-        return $resp->result();   
+       public function ingresar($usuarios,$password){
+        $this->db->query("SELECT '*'");
+        $this->db->from("usuarios");
+        $this->db->where("n_usuario= '$usuarios' AND password = '$password' AND key_estatus='1'");
+        $resp = $this->db->get('');
+        if ($resp->num_rows() ==1) {
+            $r = $resp->row();
+            $data = array(
+                'id_usuario' => $r->id_usuarios,
+                'n_usuario' => $r->n_usuario,
+                'nombre' => $r->nombre.",".$r->apellido,
+                'nivel_usuario' => $r->key_tipo_usuario,
+                'login'=> TRUE);          
+           $this->session->set_userdata($data);
+            return 1;  
         }else {
-          return false;  
-        }
-       
+          return 0;  
+        }  
     }
-
-    
 }
 ?>
